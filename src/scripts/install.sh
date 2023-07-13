@@ -2,6 +2,11 @@
 
 # set smart sudo
 if [[ $EUID == 0 ]]; then export SUDO=""; else export SUDO="sudo"; fi
+set -x
+if [[ -z "$ORB_STR_CLI_VERSION" ]]; then
+  echo "No version specified, using latest..."
+  export ORB_STR_CLI_VERSION="latest"
+fi
 
 if [[ $ORB_STR_CLI_VERSION == "latest" ]]; then
   ORB_STR_CLI_VERSION=$(curl -sSL https://api.github.com/repos/errata-ai/vale/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")')
@@ -15,7 +20,7 @@ ORB_STR_CLI_VERSION=${ORB_STR_CLI_VERSION//v}
 GZIPPED_OUTPUT="vale.tar.gz"
 
 # install vale
-set -x
+
 echo "Installing vale version ${ORB_STR_CLI_VERSION}..."
 curl -sSL "https://github.com/errata-ai/vale/releases/download/v${ORB_STR_CLI_VERSION}/vale_${ORB_STR_CLI_VERSION}_Linux_64-bit.tar.gz" -o "${GZIPPED_OUTPUT}"
 # Check if the downloaded file is empty
