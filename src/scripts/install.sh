@@ -11,10 +11,24 @@ fi
 # sanitize version
 ORB_STR_CLI_VERSION=${ORB_STR_CLI_VERSION//v}
 
-curl -sSL "https://github.com/errata-ai/vale/releases/download/v${ORB_STR_CLI_VERSION}/vale_${ORB_STR_CLI_VERSION}_Linux_64-bit.tar.gz" -o vale.tar.gz
-tar -xzf vale.tar.gz
+# consts
+GZIPPED_OUTPUT="vale.tar.gz"
+
+# install vale
+set -x
+echo "Installing vale version ${ORB_STR_CLI_VERSION}..."
+curl -sSL "https://github.com/errata-ai/vale/releases/download/v${ORB_STR_CLI_VERSION}/vale_${ORB_STR_CLI_VERSION}_Linux_64-bit.tar.gz" -o "${GZIPPED_OUTPUT}"
+# Check if the downloaded file is empty
+if [ ! -s "${GZIPPED_OUTPUT}" ]; then
+    echo "Downloaded file is empty"
+    rm "${GZIPPED_OUTPUT}"
+    exit 1
+fi
+
+tar -xzf "${GZIPPED_OUTPUT}"
 $SUDO mv vale /usr/local/bin
-rm vale.tar.gz
+rm "${GZIPPED_OUTPUT}"
+set +x
 
 # validate installation
 COMMAND_PATH=$(command -v vale)
