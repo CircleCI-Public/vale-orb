@@ -4,7 +4,7 @@ redtext() {
   echo -e "\033[0;31m$1\033[0m"
 }
 
-ORB_STR_CLI_CONFIG="$(circelci env subst "$ORB_STR_CLI_CONFIG")"
+ORB_STR_CLI_CONFIG="$(circleci env subst "$ORB_STR_CLI_CONFIG")"
 ORB_STR_CLI_GLOB="$(circleci env subst "$ORB_STR_CLI_GLOB")"
 ORB_STR_CLI_BASE_DIR="$(circleci env subst "$ORB_STR_CLI_BASE_DIR")"
 
