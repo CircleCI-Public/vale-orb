@@ -1,0 +1,16 @@
+description: >
+  Lint your markdown, AsciiDoc, reStructuredText, and more.
+
+executor: default
+
+parameters:
+  version:
+    type: string
+    default: "latest"
+    description: "Pin to a specific version of the Vale CLI for improved stability. By default, the latest version will be used."
+steps:
+  - run:
+      name: Install Vale
+      environment:
+        ORB_STR_CLI_VERSION: << parameters.version >>
+      command: <<include(scripts/install.sh)>>
