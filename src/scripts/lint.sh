@@ -5,7 +5,7 @@ redtext() {
 }
 
 base_dir="${CIRCLE_WORKING_DIRECTORY/\~/$HOME}"
-config_path="$(circleci env subst "$ORB_STR_CLI_CONFIG")"
+config_path="$(eval echo "$ORB_STR_CLI_CONFIG")"
 glob="$(circleci env subst "$ORB_STR_CLI_GLOB")"
 
 if [[ ! -f "$config_path" ]]; then
