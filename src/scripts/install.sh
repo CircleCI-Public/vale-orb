@@ -1,5 +1,8 @@
 #!/bin/bash
 
+ORB_STR_CLI_VERSION=$(circleci env subst "$ORB_STR_CLI_VERSION")
+
+
 # set smart sudo
 if [[ $EUID == 0 ]]; then export SUDO=""; else export SUDO="sudo"; fi
 
