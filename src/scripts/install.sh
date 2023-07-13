@@ -2,7 +2,7 @@
 
 # set smart sudo
 if [[ $EUID == 0 ]]; then export SUDO=""; else export SUDO="sudo"; fi
-set -x
+
 if [[ -z "$ORB_STR_CLI_VERSION" ]]; then
   echo "No version specified, using latest..."
   export ORB_STR_CLI_VERSION="latest"
@@ -33,7 +33,6 @@ fi
 tar -xzf "${GZIPPED_OUTPUT}"
 $SUDO mv vale /usr/local/bin
 rm "${GZIPPED_OUTPUT}"
-set +x
 
 # validate installation
 COMMAND_PATH=$(command -v vale)
