@@ -7,6 +7,12 @@ redtext() {
 if [[ ! -f "$ORB_STR_CLI_CONFIG" ]]; then
   redtext "No configuration file found at $ORB_STR_CLI_CONFIG"
   echo "To get started, you'll need a configuration file (.vale.ini)"
+  echo "Create a config file, or modify the 'config' parameter for this job"
+  echo "Example:"
+  echo '
+    - vale/lint:
+        config: .github/vale.ini
+  '
   exit 1
 fi
 
