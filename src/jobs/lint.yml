@@ -17,6 +17,7 @@ parameters:
     default: ".vale.ini"
     description: "Path to a Vale configuration file. By default, Vale will look for a .vale.ini file in the root of your repository."
 steps:
+  - checkout
   - run:
       name: Install Vale
       environment:
