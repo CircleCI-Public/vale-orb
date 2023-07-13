@@ -7,7 +7,7 @@ redtext() {
 # debug
 echo "Glob: $ORB_STR_CLI_GLOB"
 echo "Config: $ORB_STR_CLI_CONFIG"
-ls -la "$ORB_STR_CLI_CONFIG"
+ls -lah
 
 if [[ ! -f "$ORB_STR_CLI_CONFIG" ]]; then
   redtext "No configuration file found at $ORB_STR_CLI_CONFIG"
