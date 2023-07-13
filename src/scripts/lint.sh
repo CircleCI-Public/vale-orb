@@ -6,6 +6,7 @@ redtext() {
 
 ORB_STR_CLI_CONFIG="$(circelci env subst "$ORB_STR_CLI_CONFIG")"
 ORB_STR_CLI_GLOB="$(circleci env subst "$ORB_STR_CLI_GLOB")"
+ORB_STR_CLI_BASE_DIR="$(circleci env subst "$ORB_STR_CLI_BASE_DIR")"
 
 if [[ ! -f "$ORB_STR_CLI_CONFIG" ]]; then
   redtext "No configuration file found at $ORB_STR_CLI_CONFIG"
