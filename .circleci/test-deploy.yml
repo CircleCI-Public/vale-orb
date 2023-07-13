@@ -37,5 +37,6 @@ workflows:
           requires:
             - orb-tools/pack
             - vale/lint
-          context: orb-publishing
+          context: orb-publisher
+          github_token: GHI_TOKEN
           filters: *release-filters
