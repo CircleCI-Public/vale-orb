@@ -12,6 +12,10 @@ parameters:
     type: string
     default: "**/*.{md,adoc}"
     description: "Glob pattern to match files against. By default, all markdown and AsciiDoc files will be linted."
+  base_dir:
+    type: string
+    default: "."
+    description: "Base directory to run Vale from. By default, Vale will run in the current directory."
   config:
     type: string
     default: ".vale.ini"
@@ -30,4 +34,5 @@ steps:
       environment:
         ORB_STR_CLI_GLOB: << parameters.glob >>
         ORB_STR_CLI_CONFIG: << parameters.config >>
+        ORB_STR_CLI_BASE_DIR: << parameters.base_dir >>
       command: <<include(scripts/lint.sh)>>
