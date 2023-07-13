@@ -2,7 +2,6 @@
 
 # set smart sudo
 if [[ $EUID == 0 ]]; then export SUDO=""; else export SUDO="sudo"; fi
-const releases = 'https://github.com/errata-ai/vale/releases/download';
 
 if [[ $ORB_STR_CLI_VERSION == "latest" ]]; then
   ORB_STR_CLI_VERSION=$(curl -sSL https://api.github.com/repos/errata-ai/vale/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")')
