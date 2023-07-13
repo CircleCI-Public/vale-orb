@@ -4,8 +4,12 @@ redtext() {
   echo -e "\033[0;31m$1\033[0m"
 }
 
-if [[ ! -f "$ORB_STR_CLI_CONFIG" ]]; then
-  redtext "No configuration file found at $ORB_STR_CLI_CONFIG"
+base_dir="${CIRCLE_WORKING_DIRECTORY/\~/$HOME}"
+config_path="$(circleci env subst "$ORB_STR_CLI_CONFIG")"
+glob="$(circleci env subst "$ORB_STR_CLI_GLOB")"
+
+if [[ ! -f "$config_path" ]]; then
+  redtext "No configuration file found at $config_path"
   echo "To get started, you'll need a configuration file (.vale.ini)"
   echo "Create a config file, or modify the 'config' parameter for this job"
   echo "Example:"
@@ -17,5 +21,5 @@ if [[ ! -f "$ORB_STR_CLI_CONFIG" ]]; then
 fi
 set -x
 vale sync
-vale --glob="$ORB_STR_CLI_GLOB" --config="$ORB_STR_CLI_CONFIG"
+vale --glob="$glob" --config="$config_path" "$base_dir"
 set +x
