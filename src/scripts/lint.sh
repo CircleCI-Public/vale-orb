@@ -15,5 +15,6 @@ if [[ ! -f "$ORB_STR_CLI_CONFIG" ]]; then
   '
   exit 1
 fi
-
+set -x
 vale --glob "$ORB_STR_CLI_GLOB" --config "$ORB_STR_CLI_CONFIG"
+set +x
