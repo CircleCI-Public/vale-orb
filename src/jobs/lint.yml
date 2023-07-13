@@ -29,4 +29,4 @@ steps:
       environment:
         ORB_STR_CLI_GLOB: << parameters.glob >>
         ORB_STR_CLI_CONFIG: << parameters.config >>
-      command: <<include(scripts/install.sh)>>
+      command: <<include(scripts/lint.sh)>>
