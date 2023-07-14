@@ -22,7 +22,7 @@ A paragraph followed by an unordered list{empty}footnote:[AsciiDoc supports unor
 
 == Main
 
-Here's how you say "`Hello, World!`" in Prawn:
+Here's how you say "`Hello, World.`" in Prawn:
 
 .Create a basic PDF document using Prawn
 [source,ruby]
@@ -30,10 +30,10 @@ Here's how you say "`Hello, World!`" in Prawn:
 require 'prawn'
 
 Prawn::Document.generate 'example.pdf' do
-  text 'Hello, World!'
+  text 'Hello, World.'
 end
 ----
 
 == Conclusion
 
-That's all, folks!
+That's all, folks.
