@@ -8,8 +8,8 @@ ORB_EVAL_CLI_CONFIG="$(eval echo "$ORB_EVAL_CLI_CONFIG")"
 ORB_STR_CLI_GLOB="$(circleci env subst "$ORB_STR_CLI_GLOB")"
 ORB_EVAL_CLI_BASE_DIR="$(eval echo "$ORB_EVAL_CLI_BASE_DIR")"
 
-if [[ ! -f "$ORB_STR_CLI_CONFIG" ]]; then
-  redtext "No configuration file found at $ORB_STR_CLI_CONFIG"
+if [[ ! -f "$ORB_EVAL_CLI_CONFIG" ]]; then
+  redtext "No configuration file found at $ORB_EVAL_CLI_CONFIG"
   echo "To get started, you'll need a configuration file (.vale.ini)"
   echo "Create a config file, or modify the 'config' parameter for this job"
   echo "Example:"
