@@ -4,10 +4,6 @@ description: >
 executor: default
 
 parameters:
-  version:
-    type: string
-    default: "latest"
-    description: "Pin to a specific version of the Vale CLI for improved stability. By default, the latest version will be used."
   glob:
     type: string
     default: "**/*.{md,adoc}"
