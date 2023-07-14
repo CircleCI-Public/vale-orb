@@ -4,9 +4,9 @@ redtext() {
   echo -e "\033[0;31m$1\033[0m"
 }
 
-ORB_STR_CLI_CONFIG="$(circleci env subst "$ORB_STR_CLI_CONFIG")"
+ORB_EVAL_CLI_CONFIG="$(eval echo "$ORB_EVAL_CLI_CONFIG")"
 ORB_STR_CLI_GLOB="$(circleci env subst "$ORB_STR_CLI_GLOB")"
-ORB_STR_CLI_BASE_DIR="$(circleci env subst "$ORB_STR_CLI_BASE_DIR")"
+ORB_EVAL_CLI_BASE_DIR="$(eval echo "$ORB_EVAL_CLI_BASE_DIR")"
 
 if [[ ! -f "$ORB_STR_CLI_CONFIG" ]]; then
   redtext "No configuration file found at $ORB_STR_CLI_CONFIG"
