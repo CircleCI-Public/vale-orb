@@ -1,11 +1,11 @@
 description: >
-  cimg/base is an Ubuntu Docker image created by CircleCI with continuous integration builds in mind.
+  The official Docker image for Vale. Includes 'py3-docutils' and 'asciidoctor'.
 docker:
-  - image: 'cimg/base:<<parameters.tag>>'
+  - image: 'jdkato/vale:<<parameters.tag>>'
 parameters:
   tag:
-    default: current
+    default: latest
     description: >
-      Pick a specific cimg/base image variant:
-      https://circleci.com/developer/images/image/cimg/base
+      Pick a specific jdkato/vale image tag:
+      https://hub.docker.com/r/jdkato/vale/tags
     type: string
