@@ -1,22 +1,22 @@
 #!/bin/bash
 
-ORB_STR_CLI_VERSION="$(circleci env subst "$ORB_STR_CLI_VERSION")"
+VALE_STR_CLI_VERSION="$(circleci env subst "$VALE_STR_CLI_VERSION")"
 
 # set smart sudo
 if [[ $EUID -eq 0 ]]; then export SUDO=""; else export SUDO="sudo"; fi
 
-if [[ -z "$ORB_STR_CLI_VERSION" ]]; then
+if [[ -z "$VALE_STR_CLI_VERSION" ]]; then
   echo "No version specified, using latest..."
-  export ORB_STR_CLI_VERSION="latest"
+  export VALE_STR_CLI_VERSION="latest"
 fi
 
-if [[ $ORB_STR_CLI_VERSION == "latest" ]]; then
-  ORB_STR_CLI_VERSION=$(curl -sSL https://api.github.com/repos/errata-ai/vale/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")')
-  export ORB_STR_CLI_VERSION
+if [[ $VALE_STR_CLI_VERSION == "latest" ]]; then
+  VALE_STR_CLI_VERSION=$(curl -sSL https://api.github.com/repos/errata-ai/vale/releases/latest | grep -oP '"tag_name": "\K(.*)(?=")')
+  export VALE_STR_CLI_VERSION
 fi
 
 # sanitize version
-ORB_STR_CLI_VERSION=${ORB_STR_CLI_VERSION//v/}
+VALE_STR_CLI_VERSION=${VALE_STR_CLI_VERSION//v/}
 
 # Define current platform
 if [[ "$(uname -s)" == "Darwin" && "$(uname -m)" == "x86_64" ]]; then
@@ -40,19 +40,19 @@ GZIPPED_OUTPUT="vale.tar.gz"
 
 # Get binary url
 if ! command -v gh >/dev/null 2>&1; then
-  echo "Installing Vale version ${ORB_STR_CLI_VERSION}..."
+  echo "Installing Vale version ${VALE_STR_CLI_VERSION}..."
   case $SYS_ENV_PLATFORM in
   linux_x86)
-    BINARY_URL="https://github.com/errata-ai/vale/releases/download/v${ORB_STR_CLI_VERSION}/vale_${ORB_STR_CLI_VERSION}_Linux_64-bit.tar.gz"
+    BINARY_URL="https://github.com/errata-ai/vale/releases/download/v${VALE_STR_CLI_VERSION}/vale_${VALE_STR_CLI_VERSION}_Linux_64-bit.tar.gz"
     ;;
   linux_arm)
-    BINARY_URL="https://github.com/errata-ai/vale/releases/download/v${ORB_STR_CLI_VERSION}/vale_${ORB_STR_CLI_VERSION}_Linux_arm64.tar.gz"
+    BINARY_URL="https://github.com/errata-ai/vale/releases/download/v${VALE_STR_CLI_VERSION}/vale_${VALE_STR_CLI_VERSION}_Linux_arm64.tar.gz"
     ;;
   macos)
-    BINARY_URL="https://github.com/errata-ai/vale/releases/download/v${ORB_STR_CLI_VERSION}/vale_${ORB_STR_CLI_VERSION}_macOS_64-bit.tar.gz"
+    BINARY_URL="https://github.com/errata-ai/vale/releases/download/v${VALE_STR_CLI_VERSION}/vale_${VALE_STR_CLI_VERSION}_macOS_64-bit.tar.gz"
     ;;
   macos_arm)
-    BINARY_URL="https://github.com/errata-ai/vale/releases/download/v${ORB_STR_CLI_VERSION}/vale_${ORB_STR_CLI_VERSION}_macOS_arm64.tar.gz"
+    BINARY_URL="https://github.com/errata-ai/vale/releases/download/v${VALE_STR_CLI_VERSION}/vale_${VALE_STR_CLI_VERSION}_macOS_arm64.tar.gz"
     ;;
   *)
     echo "This orb does not currently support your platform. If you believe it should, please consider opening an issue on the GitHub repository:"
