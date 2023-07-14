@@ -1,0 +1,14 @@
+description: If you want to use the Vale CLI in your own custom-defined job, you can use this command to install it into your environment.
+
+parameters:
+  version:
+    type: string
+    default: "latest"
+    description: "Pin to a specific version of the Vale CLI for improved stability. By default, the latest version will be used."
+
+steps:
+  - run:
+      name: Install Vale
+      environment:
+        ORB_STR_CLI_VERSION: << parameters.version >>
+      command: <<include(scripts/install.sh)>>
