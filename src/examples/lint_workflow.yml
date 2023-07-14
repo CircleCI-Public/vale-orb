@@ -1,0 +1,10 @@
+description: >
+  The `vale/lint` job can be added to your existing workflows or as a new workflow to lint your markdown, AsciiDoc, reStructuredText, and more.
+usage:
+  version: 2.1
+  orbs:
+    vale: circleci/vale@1.0.0
+  workflows:
+    lint:
+      jobs:
+        - vale/lint
