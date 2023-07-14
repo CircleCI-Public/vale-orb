@@ -22,6 +22,6 @@ steps:
       name: Lint files
       environment:
         ORB_STR_CLI_GLOB: << parameters.glob >>
-        ORB_STR_CLI_CONFIG: << parameters.config >>
-        ORB_STR_CLI_BASE_DIR: << parameters.base_dir >>
+        ORB_EVAL_CLI_CONFIG: << parameters.config >>
+        ORB_EVAL_CLI_BASE_DIR: << parameters.base_dir >>
       command: <<include(scripts/lint.sh)>>
