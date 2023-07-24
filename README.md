@@ -20,7 +20,7 @@ A CircleCI orb for [Vale](https://github.com/errata-ai/vale) from [errata.ai](ht
 ---
 ### How to Contribute
 
-We welcome [issues](https://github.com/CircleCI-Public/vale-orb/issues) to and [pull requests](https://github.com/CircleCI-Public/vale-orb/pulls) against this repository!
+We welcome [issues](https://github.com/CircleCI-Public/vale-orb/issues) to and [pull requests](https://github.com/CircleCI-Public/vale-orb/pulls) against this repository.
 
 ### How to Publish An Update
 1. Merge pull requests with desired changes to the main branch.
