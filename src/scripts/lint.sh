@@ -21,5 +21,6 @@ if [[ ! -f "$VALE_EVAL_CLI_CONFIG" ]]; then
 fi
 set -x
 vale sync
-vale --glob="$VALE_STR_CLI_GLOB" --config="$VALE_EVAL_CLI_CONFIG" "$VALE_EVAL_CLI_BASE_DIR"
+# shellcheck disable=SC2086
+vale --glob="$VALE_STR_CLI_GLOB" --config="$VALE_EVAL_CLI_CONFIG" $VALE_EVAL_CLI_BASE_DIR
 set +x
