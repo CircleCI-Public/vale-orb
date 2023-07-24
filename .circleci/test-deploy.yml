@@ -25,7 +25,17 @@ workflows:
       # Make sure to include "filters: *filters" in every test job you want to run as part of your deployment.
       # Test your orb's commands in a custom job and test your orb's jobs directly as a part of this workflow.
       - vale/lint:
+          name: vale-lint-all
           base_dir: "sample/"
+          filters: *filters
+      - vale/lint:
+          name: vale-lint-md
+          base_dir: "sample/"
+          glob: "*/test.md"
+          filters: *filters
+      - vale/lint:
+          name: vale-lint-readme
+          glob: "*/README.md"
           filters: *filters
       # The orb must be re-packed for publishing, and saved to the workspace.
       - orb-tools/pack:
@@ -37,7 +47,8 @@ workflows:
           # Ensure this job requires all test jobs and the pack job.
           requires:
             - orb-tools/pack
-            - vale/lint
+            - vale-lint-all
+            - vale-lint-md
           context: orb-publisher
           github_token: GHI_TOKEN
           filters: *release-filters
