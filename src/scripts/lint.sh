@@ -6,7 +6,9 @@ redtext() {
 
 VALE_EVAL_CLI_CONFIG="$(eval echo "$VALE_EVAL_CLI_CONFIG")"
 VALE_STR_CLI_GLOB="$(circleci env subst "$VALE_STR_CLI_GLOB")"
+
 VALE_EVAL_CLI_BASE_DIR="$(eval echo "$VALE_EVAL_CLI_BASE_DIR")"
+VALE_EVAL_CLI_BASE_DIR="${VALE_EVAL_CLI_BASE_DIR/\~/$HOME}"
 
 if [[ ! -f "$VALE_EVAL_CLI_CONFIG" ]]; then
   redtext "No configuration file found at $VALE_EVAL_CLI_CONFIG"
