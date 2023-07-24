@@ -49,6 +49,7 @@ workflows:
             - orb-tools/pack
             - vale-lint-all
             - vale-lint-md
+            - vale-lint-readme
           context: orb-publisher
           github_token: GHI_TOKEN
           filters: *release-filters
