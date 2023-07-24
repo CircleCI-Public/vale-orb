@@ -6,7 +6,7 @@ executor: default
 parameters:
   glob:
     type: string
-    default: "**/*.{md,adoc}"
+    default: "*.{md,adoc}"
     description: "Glob pattern to match files against. By default, all markdown and AsciiDoc files will be linted."
   base_dir:
     type: string
