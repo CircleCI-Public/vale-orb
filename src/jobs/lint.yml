@@ -10,7 +10,7 @@ parameters:
     description: "Glob pattern to match files against. By default, all markdown and AsciiDoc files will be linted."
   base_dir:
     type: string
-    default: "."
+    default: "$CIRCLE_WORKING_DIRECTORY"
     description: "Base directory to run Vale from. By default, Vale will run in the current directory."
   config:
     type: string
