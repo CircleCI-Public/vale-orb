@@ -16,12 +16,23 @@ parameters:
     type: string
     default: ".vale.ini"
     description: "Path to a Vale configuration file. By default, Vale will look for a .vale.ini file in the root of your repository."
+  strategy:
+    type: enum
+    default: modified
+    enum: [modified, all]
+    description: "Strategy to use when determining which files to lint. By default, only modified files will be linted."
+  reference_branch:
+    type: string
+    default: main
+    description: "Branch to use as a reference when determining modified files. By default, the main branch will be used."
 steps:
   - checkout
   - run:
       name: Lint files
       environment:
         VALE_STR_CLI_GLOB: << parameters.glob >>
+        VALE_STR_REFERENCE_BRANCH: << parameters.reference_branch >>
         VALE_EVAL_CLI_CONFIG: << parameters.config >>
         VALE_EVAL_CLI_BASE_DIR: << parameters.base_dir >>
+        VALE_ENUM_STRATEGY: << parameters.strategy >>
       command: <<include(scripts/lint.sh)>>
