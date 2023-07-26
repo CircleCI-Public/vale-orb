@@ -36,10 +36,14 @@ fi
 if [[ "$VALE_ENUM_STRATEGY" == "all" ]]; then
   sync_and_run_vale "$VALE_STR_CLI_GLOB" "$VALE_EVAL_CLI_CONFIG" "$VALE_EVAL_CLI_BASE_DIR"
 elif [[ "$VALE_ENUM_STRATEGY" == "modified" ]]; then
+  echo "Installing git..."
+  command -v git &>/dev/null || { apk add git; }
+
   echo "Checking for modified files..."
   modified_files="$(git diff --name-only "$VALE_STR_REFERENCE_BRANCH")"
-  [ -z "$modified_files" ] && { echo "No modified files found"; exit 0; }
   files_space_delimited="$(echo "$modified_files" | tr '\n' ' ')"
+
+  echo "Running vale on modified files..."
   sync_and_run_vale "$VALE_STR_CLI_GLOB" "$VALE_EVAL_CLI_CONFIG" "$files_space_delimited"
 else
   echo "Invalid strategy: $VALE_ENUM_STRATEGY"
