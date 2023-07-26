@@ -27,14 +27,17 @@ workflows:
       - vale/lint:
           name: vale-lint-all
           base_dir: "sample/"
+          strategy: all
           filters: *filters
       - vale/lint:
           name: vale-lint-md
           base_dir: "sample/"
+          strategy: all
           glob: "*/test.md"
           filters: *filters
       - vale/lint:
           name: vale-lint-readme
+          strategy: all
           glob: "*/README.md"
           filters: *filters
       # The orb must be re-packed for publishing, and saved to the workspace.
