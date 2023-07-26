@@ -20,11 +20,17 @@ parameters:
     type: enum
     default: modified
     enum: [modified, all]
-    description: "Strategy to use when determining which files to lint. By default, only modified files will be linted."
+    description: |
+      Strategy to use when determining which files to lint. 
+      By default, only modified files will be linted.
+      If set to modified, the "reference_branch" parameter must also be set.
   reference_branch:
     type: string
     default: main
-    description: "Branch to use as a reference when determining modified files. By default, the main branch will be used."
+    description: |
+      Branch to use as a reference when determining modified files. 
+      By default, the main branch will be used.
+      If the "strategy" is set to modified, this parameter must also be set.
 steps:
   - checkout
   - run:
