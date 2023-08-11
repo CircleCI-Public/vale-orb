@@ -41,7 +41,7 @@ elif [ "$VALE_ENUM_STRATEGY" = "modified" ]; then
   command -v git > /dev/null 2>&1 || { apk add git; }
 
   echo "Checking for modified files..."
-  modified_files="$(git diff --name-only "$VALE_STR_REFERENCE_BRANCH")"
+  modified_files="$(git diff --name-only --diff-filter=d "$VALE_STR_REFERENCE_BRANCH")"
   echo "$modified_files"
 
   modified_files_space_separated=$(echo "$modified_files" | tr '\n' ' ')
