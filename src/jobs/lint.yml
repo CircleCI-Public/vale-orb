@@ -1,7 +1,9 @@
 description: >
   Lint your markdown, AsciiDoc, reStructuredText, and more.
 
-executor: default
+executor:
+  name: default
+  tag: << parameters.vale_version >>
 
 parameters:
   glob:
@@ -31,6 +33,13 @@ parameters:
       Branch to use as a reference when determining modified files.
       By default, the main branch will be used.
       If the strategy is set to "modified", this parameter must also be set.
+  vale_version:
+    type: string
+    default: latest
+    description: |
+      Vale version to use.
+      The value must be specified as "v<version_number>".
+      For example: v3.6.1
 steps:
   - checkout
   - run:
