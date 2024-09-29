@@ -1,0 +1,14 @@
+description: >
+  When using the `vale/lint` job you can also specify the Vale version you wish to use. 
+usage:
+  version: 2.1
+  orbs:
+    vale: circleci/vale@1.2.1
+  workflows:
+    publish-docs:
+      jobs:
+        - vale/lint:
+            name: lint docs
+            strategy: all
+            glob: "[!.]*.{md,adoc}"
+            vale_version: v3.6.1
