@@ -1,2 +1,1 @@
-circleci
-CircleCI
+[Cc]ircle[Cc][Ii]
