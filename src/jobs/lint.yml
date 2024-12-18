@@ -1,9 +1,13 @@
 description: >
   Lint your markdown, AsciiDoc, reStructuredText, and more.
 
-executor: default
+executor: <<parameters.executor>>
 
 parameters:
+  executor:
+    type: executor
+    default: default
+    description: "Executor where the lint will be run on, defaults to the Default executor of this orb."
   glob:
     type: string
     default: "*.{md,adoc}"
