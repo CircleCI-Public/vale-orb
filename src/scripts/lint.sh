@@ -41,12 +41,24 @@ elif [ "$VALE_ENUM_STRATEGY" = "modified" ]; then
   command -v git > /dev/null 2>&1 || { apk add git; }
 
   echo "Checking for modified files..."
-  modified_files="$(git diff --name-only --diff-filter=d "$VALE_STR_REFERENCE_BRANCH")"
-  echo "$modified_files"
-
-  modified_files_space_separated=$(echo "$modified_files" | tr '\n' ' ')
+  PREFIX="$VALE_EVAL_CLI_BASE_DIR/"
+  FILES=""
+  while read -r file; do
+      if [ "$VALE_EVAL_CLI_BASE_DIR" = "." ] || [ "$VALE_EVAL_CLI_BASE_DIR" = "$PWD" ]; then
+        FILES="$file $FILES"
+      fi
+      case "$file" in 
+        $PREFIX*)
+          FILES="$file $FILES"
+          ;;
+      esac
+  done <<EOF
+  $(git diff --name-only --diff-filter=d "$VALE_STR_REFERENCE_BRANCH")
+EOF
+  
+  echo "$FILES"
   echo "Running vale on modified files..."
-  sync_and_run_vale "$VALE_STR_CLI_GLOB" "$VALE_EVAL_CLI_CONFIG" "$modified_files_space_separated"
+  sync_and_run_vale "$VALE_STR_CLI_GLOB" "$VALE_EVAL_CLI_CONFIG" "$FILES"
 else
   echo "Invalid strategy: $VALE_ENUM_STRATEGY"
   exit 1
