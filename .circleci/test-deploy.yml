@@ -2,7 +2,7 @@ version: 2.1
 orbs:
   # Your orb will be automatically injected here during the pipeline.
   # Reference your orb's jobs and commands below as they will exist when built.
-  orb-tools: circleci/orb-tools@12.0
+  orb-tools: circleci/orb-tools@12.3
   # The orb definition is intentionally not included here. It will be injected into the pipeline.
   vale: {}
 
@@ -24,6 +24,11 @@ workflows:
     jobs:
       # Make sure to include "filters: *filters" in every test job you want to run as part of your deployment.
       # Test your orb's commands in a custom job and test your orb's jobs directly as a part of this workflow.
+      - vale/lint:
+          name: vale-lint-modified
+          base_dir: "src/"
+          strategy: modified
+          filters: *filters
       - vale/lint:
           name: vale-lint-all
           base_dir: "sample/"
