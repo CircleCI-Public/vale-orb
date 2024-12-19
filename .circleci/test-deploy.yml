@@ -25,6 +25,10 @@ workflows:
       # Make sure to include "filters: *filters" in every test job you want to run as part of your deployment.
       # Test your orb's commands in a custom job and test your orb's jobs directly as a part of this workflow.
       - vale/lint:
+          name: vale-lint-modified-default
+          strategy: modified
+          filters: *filters
+      - vale/lint:
           name: vale-lint-modified-<<matrix.base_dir>>
           matrix:
             parameters:
