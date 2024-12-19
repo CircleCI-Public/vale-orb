@@ -45,7 +45,7 @@ elif [ "$VALE_ENUM_STRATEGY" = "modified" ]; then
   PREFIX="$VALE_EVAL_CLI_BASE_DIR/"
   FILES=""
   while read -r file; do
-      if [ "$VALE_EVAL_CLI_BASE_DIR" = "."] || [ "$VALE_EVAL_CLI_BASE_DIR" = "$PWD" ]; then
+      if [ "$VALE_EVAL_CLI_BASE_DIR" = "." ] || [ "$VALE_EVAL_CLI_BASE_DIR" = "$PWD" ]; then
         FILES="$file $FILES"
       fi
       case "$file" in 
