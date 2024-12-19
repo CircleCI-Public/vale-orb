@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 redtext() {
   echo -e "\033[0;31m$1\033[0m"
@@ -48,7 +48,10 @@ elif [ "$VALE_ENUM_STRATEGY" = "modified" ]; then
       if [[ "$file" =~ $REGEX || "$VALE_EVAL_CLI_BASE_DIR" = "." || "$VALE_EVAL_CLI_BASE_DIR" = "$PWD" ]]; then
           FILES+=("$file")
       fi
-  done < <(git diff --name-only --diff-filter=d "$VALE_STR_REFERENCE_BRANCH")
+  done <<EOF
+  $(git diff --name-only --diff-filter=d "$VALE_STR_REFERENCE_BRANCH")
+EOF
+  
   echo "${FILES[@]}"
   # modified_files="$(git diff --name-only --diff-filter=d "$VALE_STR_REFERENCE_BRANCH")"
   # echo "$modified_files"
