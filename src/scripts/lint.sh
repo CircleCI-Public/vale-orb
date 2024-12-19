@@ -41,7 +41,6 @@ elif [ "$VALE_ENUM_STRATEGY" = "modified" ]; then
   command -v git > /dev/null 2>&1 || { apk add git; }
 
   echo "Checking for modified files..."
-  set -x
   PREFIX="$VALE_EVAL_CLI_BASE_DIR/"
   FILES=""
   while read -r file; do
