@@ -58,10 +58,6 @@ elif [ "$VALE_ENUM_STRATEGY" = "modified" ]; then
 EOF
   
   echo "$FILES"
-  # modified_files="$(git diff --name-only --diff-filter=d "$VALE_STR_REFERENCE_BRANCH")"
-  # echo "$modified_files"
-
-  # modified_files_space_separated=$(echo "$modified_files" | tr '\n' ' ')
   echo "Running vale on modified files..."
   sync_and_run_vale "$VALE_STR_CLI_GLOB" "$VALE_EVAL_CLI_CONFIG" "$FILES"
 else
