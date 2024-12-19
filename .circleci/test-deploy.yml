@@ -26,7 +26,9 @@ workflows:
       # Test your orb's commands in a custom job and test your orb's jobs directly as a part of this workflow.
       - vale/lint:
           name: vale-lint-modified
-          base_dir: "src"
+          matrix:
+            parameters:
+              base_dir: [src, sample, ".", .github]
           strategy: modified
           filters: *filters
       - vale/lint:
