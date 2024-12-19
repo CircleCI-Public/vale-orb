@@ -42,12 +42,17 @@ elif [ "$VALE_ENUM_STRATEGY" = "modified" ]; then
 
   echo "Checking for modified files..."
   set -x
-  REGEX="^$VALE_EVAL_CLI_BASE_DIR/"
+  PREFIX="$VALE_EVAL_CLI_BASE_DIR/"
   FILES=""
   while read -r file; do
-      if [[ "$file" =~ $REGEX || "$VALE_EVAL_CLI_BASE_DIR" = "." || "$VALE_EVAL_CLI_BASE_DIR" = "$PWD" ]]; then
-          FILES="$file $FILES"
+      if [ "$VALE_EVAL_CLI_BASE_DIR" = "."] || [ "$VALE_EVAL_CLI_BASE_DIR" = "$PWD" ]; then
+        FILES="$file $FILES"
       fi
+      case "$file" in 
+        $PREFIX*)
+          FILES="$file $FILES"
+          ;;
+      esac
   done <<EOF
   $(git diff --name-only --diff-filter=d "$VALE_STR_REFERENCE_BRANCH")
 EOF
