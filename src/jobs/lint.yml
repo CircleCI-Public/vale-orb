@@ -15,7 +15,7 @@ parameters:
   base_dir:
     type: string
     default: "$CIRCLE_WORKING_DIRECTORY"
-    description: "Base directory to run Vale from. By default, Vale will run in the current directory."
+    description: "Base directory to run Vale from. By default, Vale will run in the current directory. Do no put / at the end."
   config:
     type: string
     default: ".vale.ini"
