@@ -53,7 +53,7 @@ elif [ "$VALE_ENUM_STRATEGY" = "modified" ]; then
           ;;
       esac
   done <<EOF
-  $(git diff --name-only --diff-filter=d "$VALE_STR_REFERENCE_BRANCH")
+  $(git diff --name-only --diff-filter=d "$VALE_STR_REFERENCE_BRANCH"...HEAD)
 EOF
   
   echo "$FILES"
